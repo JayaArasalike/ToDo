@@ -23,7 +23,8 @@
 
   <!-- Title -->
   <h1>My To Do's!</h1>
-  <script type="in/Login"></script>
+  <!--<script type="in/Login"></script> -->
+  <a href=""><img onclick="liLogin()" src="SignIn.png"></a>
   <script>
     var liLogin = function() { // Setup an event listener to make an API call once auth is complete
         IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress"]}).place();
@@ -40,6 +41,15 @@
             var pictureUrl = profile.pictureUrls.values[0];
             var profileUrl = profile.publicProfileUrl;
             var country = profile.location.name;
+
+            var user = {
+              emailId: emailAddress,
+              profile: {
+                fName: firstName,
+                lName: lastName,
+                pUrl: profileUrl
+              }
+            };
         });
     }
 </script>
@@ -117,6 +127,19 @@
       $("#item-" + toDoNumber).remove();
 
     });
+  </script>
+  <!--<script type="in/Logout"></script>-->
+  <button type="logout" onclick="liLogout()">Logout</button>
+  <script type="text/javascript">
+
+  var liLogout = function() {
+    IN.User.logout(callbackFunction, callbackScope);
+  }
+
+  function callbackFunction() {
+    alert("You have successfully logged out.")
+  }
+
   </script>
 
 </body>
